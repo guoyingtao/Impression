@@ -1,0 +1,16 @@
+PODS:
+  - Chameleon (0.1.0)
+
+DEPENDENCIES:
+  - Chameleon (from `../`)
+
+EXTERNAL SOURCES:
+  Chameleon:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Chameleon: 0f2914802247b285950569bba9b7ededa0dd9f53
+
+PODFILE CHECKSUM: a9ae73a6c96fa1b1756b821898504ec5985ccb04
+
+COCOAPODS: 1.6.0.beta.2

@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Chameleon_Example' do
+  pod 'Chameleon', :path => '../'
+
+  target 'Chameleon_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
