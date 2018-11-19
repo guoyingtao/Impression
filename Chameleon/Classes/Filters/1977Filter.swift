@@ -14,6 +14,7 @@ struct Filter1977Theme: FilterProtocal {
     
     func process(image: UIImage) -> UIImage? {
         guard let cgImage = image.cgImage else { return nil }
+        
         let ciImage = CIImage(cgImage: cgImage)
         let filterImage = ImageHelper.getColorImage(red: 243, green: 106, blue: 188, alpha: Int(255 * 0.1), rect: ciImage.extent)
         let backgroundImage = ciImage

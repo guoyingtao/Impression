@@ -8,6 +8,8 @@
 import UIKit
 
 class FilterButton: UIView {
+    
+    var image: UIImage?
 
     /*
     // Only override draw() if you perform custom drawing.

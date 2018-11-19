@@ -10,6 +10,9 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class FilterCollectionViewController: UICollectionViewController {
+    
+    var image: UIImage?
+    var viewModel: FilterCollectionViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
