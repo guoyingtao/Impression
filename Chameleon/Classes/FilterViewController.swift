@@ -12,7 +12,7 @@ public class FilterViewController: UIViewController {
     let containerHeight: CGFloat = 160
     
     var image: UIImage?
-    var imageView: UIImageView?
+    var demoView: FilterDemoImageView?
     var filterCollectionView: FilterCollectionView?
     var stackView: UIStackView?
     
@@ -44,9 +44,7 @@ public class FilterViewController: UIViewController {
             return
         }
         
-        imageView = UIImageView()
-        imageView?.contentMode = .scaleAspectFit
-        imageView?.image = bigImage
+        demoView = FilterDemoImageView(frame: .zero, image: bigImage)
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
@@ -62,7 +60,7 @@ public class FilterViewController: UIViewController {
         
         filterCollectionView?.didSelectFilter = {[weak self] filter in
             guard let self = self else { return }
-            self.imageView?.image = filter.process(image: bigImage)
+            self.demoView?.image = filter.process(image: bigImage)
         }
         
         stackView = UIStackView()
@@ -117,7 +115,7 @@ public class FilterViewController: UIViewController {
     }
     
     fileprivate func updateLayout() {
-        guard let imageView = imageView, let collectionView = filterCollectionView else {
+        guard let demoView = demoView, let collectionView = filterCollectionView else {
             return
         }
         
@@ -125,7 +123,7 @@ public class FilterViewController: UIViewController {
             return
         }
         
-        stackView?.removeArrangedSubview(imageView)
+        stackView?.removeArrangedSubview(demoView)
         stackView?.removeArrangedSubview(collectionView)
         
         if UIApplication.shared.statusBarOrientation.isPortrait {
@@ -134,7 +132,7 @@ public class FilterViewController: UIViewController {
 
             stackView?.axis = .vertical
             
-            stackView?.addArrangedSubview(imageView)
+            stackView?.addArrangedSubview(demoView)
             stackView?.addArrangedSubview(collectionView)
             
             flowLayout.scrollDirection = .horizontal
@@ -146,9 +144,9 @@ public class FilterViewController: UIViewController {
             
             if UIApplication.shared.statusBarOrientation == .landscapeLeft {
                 stackView?.addArrangedSubview(collectionView)
-                stackView?.addArrangedSubview(imageView)
+                stackView?.addArrangedSubview(demoView)
             } else {
-                stackView?.addArrangedSubview(imageView)
+                stackView?.addArrangedSubview(demoView)
                 stackView?.addArrangedSubview(collectionView)
             }
             
