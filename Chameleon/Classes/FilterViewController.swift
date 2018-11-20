@@ -41,6 +41,8 @@ public class FilterViewController: UIViewController {
         stackView = UIStackView()
         
         view.addSubview(stackView!)
+        stackView?.addArrangedSubview(imageView!)
+        stackView?.addArrangedSubview(filterCollectionContainer!)
         
         stackView?.translatesAutoresizingMaskIntoConstraints = false
         imageView?.translatesAutoresizingMaskIntoConstraints = false
@@ -72,31 +74,30 @@ public class FilterViewController: UIViewController {
             return
         }
         
-        stackView?.addArrangedSubview(imageView)
-        stackView?.addArrangedSubview(container)
-
-//        stackView?.removeArrangedSubview(imageView)
-//        stackView?.removeArrangedSubview(container)
+        stackView?.removeArrangedSubview(imageView)
+        stackView?.removeArrangedSubview(container)
         
         if UIApplication.shared.statusBarOrientation.isPortrait {
             containerVerticalHeightConstraint?.isActive = true
             containerHorizontalWidthConstraint?.isActive = false
 
             stackView?.axis = .vertical
-//            stackView?.addArrangedSubview(imageView)
-//            stackView?.addArrangedSubview(container)
+            
+            stackView?.addArrangedSubview(imageView)
+            stackView?.addArrangedSubview(container)
         } else {
             containerVerticalHeightConstraint?.isActive = false
             containerHorizontalWidthConstraint?.isActive = true
 
             stackView?.axis = .horizontal
-//            if UIApplication.shared.statusBarOrientation == .landscapeLeft {
-//                stackView?.addArrangedSubview(imageView)
-//                stackView?.addArrangedSubview(container)
-//            } else {
-//                stackView?.addArrangedSubview(container)
-//                stackView?.addArrangedSubview(imageView)
-//            }
+            
+            if UIApplication.shared.statusBarOrientation == .landscapeLeft {
+                stackView?.addArrangedSubview(container)
+                stackView?.addArrangedSubview(imageView)
+            } else {
+                stackView?.addArrangedSubview(imageView)
+                stackView?.addArrangedSubview(container)
+            }
         }
     }
     
