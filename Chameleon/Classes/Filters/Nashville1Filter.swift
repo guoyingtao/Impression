@@ -1,5 +1,5 @@
 //
-//  NashvilleFilter.swift
+//  Nashville1Filter.swift
 //  Chameleon
 //
 //  Created by Echo on 11/18/18.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct NashvilleFilter: FilterProtocal {
-    var name: String = "Nashville"
+struct Nashville1Filter: FilterProtocal {
+    var name: String = "Nashville1"
     
     var localizableNames: [String : String] = [:]
     

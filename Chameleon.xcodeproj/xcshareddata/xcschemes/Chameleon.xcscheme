@@ -14,38 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "Chameleon_Example.app"
-               BlueprintName = "Chameleon_Example"
-               ReferencedContainer = "container:Chameleon.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "Chameleon_Tests.xctest"
-               BlueprintName = "Chameleon_Tests"
-               ReferencedContainer = "container:Chameleon.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "5F609CAE21A4A3C1004F18DF"
                BuildableName = "Chameleon.framework"
                BlueprintName = "Chameleon"
-               ReferencedContainer = "container:../Chameleon.xcodeproj">
+               ReferencedContainer = "container:Chameleon.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -60,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "Chameleon_Tests.xctest"
-               BlueprintName = "Chameleon_Tests"
+               BlueprintIdentifier = "5F609CB721A4A3C1004F18DF"
+               BuildableName = "ChameleonTests.xctest"
+               BlueprintName = "ChameleonTests"
                ReferencedContainer = "container:Chameleon.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -70,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Chameleon_Example.app"
-            BlueprintName = "Chameleon_Example"
+            BlueprintIdentifier = "5F609CAE21A4A3C1004F18DF"
+            BuildableName = "Chameleon.framework"
+            BlueprintName = "Chameleon"
             ReferencedContainer = "container:Chameleon.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -89,16 +61,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Chameleon_Example.app"
-            BlueprintName = "Chameleon_Example"
+            BlueprintIdentifier = "5F609CAE21A4A3C1004F18DF"
+            BuildableName = "Chameleon.framework"
+            BlueprintName = "Chameleon"
             ReferencedContainer = "container:Chameleon.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -108,16 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Chameleon_Example.app"
-            BlueprintName = "Chameleon_Example"
+            BlueprintIdentifier = "5F609CAE21A4A3C1004F18DF"
+            BuildableName = "Chameleon.framework"
+            BlueprintName = "Chameleon"
             ReferencedContainer = "container:Chameleon.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

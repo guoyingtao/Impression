@@ -5,7 +5,7 @@
 //  Created by Echo on 11/18/18.
 //
 
-import Foundation
+import UIKit
 
 class CollectionDataSource<Model>: NSObject, UICollectionViewDataSource {
     typealias CellConfigurator = (Model, UICollectionViewCell) -> Void
@@ -24,7 +24,12 @@ class CollectionDataSource<Model>: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(models.count)
         return models.count
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -40,14 +45,21 @@ class CollectionDataSource<Model>: NSObject, UICollectionViewDataSource {
     }
 }
 
-extension CollectionDataSource where Model == FilterProtocal {
-    static func make(for fileters: [FilterProtocal],
-                     reuseIdentifier: String = "message") -> CollectionDataSource {
+extension CollectionDataSource where Model == (filter: FilterProtocal, image: UIImage) {
+    static func make(for imageProcessors: [(FilterProtocal, UIImage)],
+                     reuseIdentifier: String = "FilterCell") -> CollectionDataSource {
         return CollectionDataSource (
-            models: fileters,
+            models: imageProcessors,
             reuseIdentifier: reuseIdentifier
-        ) { (message, cell) in
-            // to do
+        ) { (imageProcessor, cell) in
+            cell.backgroundColor = UIColor.white
+            
+            guard let cell = cell as? FilterCollectionViewCell else {
+                return
+            }
+
+            guard let image = imageProcessor.filter.process(image: imageProcessor.image) else { return }
+            cell.setup(image: image, title: imageProcessor.filter.name)
         }
     }
 }

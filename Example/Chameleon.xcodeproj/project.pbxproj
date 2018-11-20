@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F609CE421A4A4A4004F18DF /* Chameleon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F609CE321A4A4A4004F18DF /* Chameleon.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 		1657659422CFB31625C1F48A /* Pods_Chameleon_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chameleon_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD59D169F88A852E1638F1C /* Chameleon.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Chameleon.podspec; path = ../Chameleon.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		522A243A1F26232979726BF0 /* Pods-Chameleon_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chameleon_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Chameleon_Tests/Pods-Chameleon_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		5F609CE321A4A4A4004F18DF /* Chameleon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Chameleon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* Chameleon_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chameleon_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F609CE421A4A4A4004F18DF /* Chameleon.framework in Frameworks */,
 				B74FD118A1A10CD001103547 /* Pods_Chameleon_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +75,7 @@
 		48A81B21341AD8562E1EE168 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5F609CE321A4A4A4004F18DF /* Chameleon.framework */,
 				1657659422CFB31625C1F48A /* Pods_Chameleon_Example.framework */,
 				D4E06926FAB3D68DFDF5564A /* Pods_Chameleon_Tests.framework */,
 			);

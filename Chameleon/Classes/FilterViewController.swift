@@ -9,9 +9,11 @@ import UIKit
 
 public class FilterViewController: UIViewController {
     
+    let containerHeight: CGFloat = 160
+    
     var image: UIImage?
     var imageView: UIImageView?
-    var filterCollectionContainer: UIView?
+    var filterCollectionView: FilterCollectionView?
     var stackView: UIStackView?
     
     var containerVerticalHeightConstraint: NSLayoutConstraint?
@@ -33,32 +35,43 @@ public class FilterViewController: UIViewController {
             return
         }
         
+        let bigImageHeight = max(view.frame.width - containerHeight, view.frame.height - containerHeight)
+        guard let bigImage = resizeImage(image: image, targetSize: CGSize(width: bigImageHeight, height: bigImageHeight)) else {
+            return
+        }
+        
+        guard let smallImage = resizeImage(image: image, targetSize: CGSize(width: containerHeight - 10, height: containerHeight - 10)) else {
+            return
+        }
+        
         imageView = UIImageView()
         imageView?.contentMode = .scaleAspectFit
-        imageView?.image = image
-        filterCollectionContainer = UIView()
-        filterCollectionContainer?.backgroundColor = .red
+        imageView?.image = bigImage
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
+        layout.itemSize = filterThumbnailSize
+        
+        filterCollectionView = FilterCollectionView(frame: view.bounds, collectionViewLayout: layout)
+        filterCollectionView?.image = smallImage
+
+        filterCollectionView?.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: "FilterCell")
+        
+        let collectionViewModel = FilterCollectionViewModel()
+        filterCollectionView?.viewModel = collectionViewModel
+        
         stackView = UIStackView()
-        
         view.addSubview(stackView!)
-        stackView?.addArrangedSubview(imageView!)
-        stackView?.addArrangedSubview(filterCollectionContainer!)
         
-        stackView?.translatesAutoresizingMaskIntoConstraints = false
-        imageView?.translatesAutoresizingMaskIntoConstraints = false
-        filterCollectionContainer?.translatesAutoresizingMaskIntoConstraints = false
-        
-        stackView?.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        stackView?.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        stackView?.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
-        stackView?.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-        
-        containerVerticalHeightConstraint = filterCollectionContainer?.heightAnchor.constraint(equalToConstant: 80)
-        containerHorizontalWidthConstraint = filterCollectionContainer?.widthAnchor.constraint(equalToConstant: 80)
-        
+        initLayout()
         updateLayout()
         
         NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        filterCollectionView?.reloadData()
     }
     
     @objc func rotated() {
@@ -69,13 +82,46 @@ public class FilterViewController: UIViewController {
         print(stackView!.frame)
     }
     
+    public override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        guard let flowLayout = filterCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        flowLayout.invalidateLayout()
+    }
+    
+    fileprivate func initLayout() {
+        guard let collectionView = filterCollectionView else {
+            return
+        }
+        
+        stackView?.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        stackView?.layer.borderColor = UIColor.blue.cgColor
+        stackView?.layer.borderWidth = 4
+        
+        stackView?.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        stackView?.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        stackView?.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        stackView?.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        
+        containerVerticalHeightConstraint = collectionView.heightAnchor.constraint(equalToConstant: containerHeight)
+        containerHorizontalWidthConstraint = collectionView.widthAnchor.constraint(equalToConstant: containerHeight)
+    }
+    
     fileprivate func updateLayout() {
-        guard let imageView = imageView, let container = filterCollectionContainer else {
+        guard let imageView = imageView, let collectionView = filterCollectionView else {
+            return
+        }
+        
+        guard let flowLayout = filterCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
         
         stackView?.removeArrangedSubview(imageView)
-        stackView?.removeArrangedSubview(container)
+        stackView?.removeArrangedSubview(collectionView)
         
         if UIApplication.shared.statusBarOrientation.isPortrait {
             containerVerticalHeightConstraint?.isActive = true
@@ -84,7 +130,9 @@ public class FilterViewController: UIViewController {
             stackView?.axis = .vertical
             
             stackView?.addArrangedSubview(imageView)
-            stackView?.addArrangedSubview(container)
+            stackView?.addArrangedSubview(collectionView)
+            
+            flowLayout.scrollDirection = .horizontal
         } else {
             containerVerticalHeightConstraint?.isActive = false
             containerHorizontalWidthConstraint?.isActive = true
@@ -92,23 +140,41 @@ public class FilterViewController: UIViewController {
             stackView?.axis = .horizontal
             
             if UIApplication.shared.statusBarOrientation == .landscapeLeft {
-                stackView?.addArrangedSubview(container)
+                stackView?.addArrangedSubview(collectionView)
                 stackView?.addArrangedSubview(imageView)
             } else {
                 stackView?.addArrangedSubview(imageView)
-                stackView?.addArrangedSubview(container)
+                stackView?.addArrangedSubview(collectionView)
             }
+            
+            flowLayout.scrollDirection = .vertical
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
-    */
 
 }

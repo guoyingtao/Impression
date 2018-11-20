@@ -7,8 +7,7 @@
 
 import Foundation
 
-let filterThumbnailSize = CGSize(width: 60, height: 60)
-
+let filterThumbnailSize = CGSize(width: 120, height: 120)
 
 public func createFilterViewController(image: UIImage) -> FilterViewController {
     return FilterViewController(image: image)

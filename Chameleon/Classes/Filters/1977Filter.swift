@@ -37,6 +37,7 @@ struct Filter1977Theme: FilterProtocal {
                 "inputPoint3": CIVector(x: 0.75, y: 0.80),
                 "inputPoint4": CIVector(x: 1, y: 1),
                 ])
-        return UIImage(ciImage: newCiImage)
+        
+        return getImage(from: newCiImage)
     }
 }
