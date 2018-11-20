@@ -41,3 +41,33 @@ extension FilterCollectionView: UICollectionViewDelegate {
         print(indexPath)
     }
 }
+
+extension CollectionDataSource where Model == (filter: FilterProtocal, image: UIImage) {
+    static func make(for imageProcessors: [(FilterProtocal, UIImage)],
+                     reuseIdentifier: String = "FilterCell") -> CollectionDataSource {
+        return CollectionDataSource (
+            models: imageProcessors,
+            reuseIdentifier: reuseIdentifier
+        ) { (imageProcessor, cell, indexPath) in
+            cell.backgroundColor = UIColor.white
+            
+            guard let cell = cell as? FilterCollectionViewCell else {
+                return
+            }
+            
+            func setupCell() {
+                guard let image = imageProcessor.filter.process(image: imageProcessor.image) else { return }
+                cell.setup(image: image, title: imageProcessor.filter.name)
+            }
+            
+            if indexPath.row > 3 {
+                DispatchQueue.main.async {
+                    setupCell()
+                }
+            } else {
+                setupCell()
+            }
+        }
+    }
+}
+

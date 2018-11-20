@@ -8,7 +8,7 @@
 import UIKit
 
 class CollectionDataSource<Model>: NSObject, UICollectionViewDataSource {
-    typealias CellConfigurator = (Model, UICollectionViewCell) -> Void
+    typealias CellConfigurator = (Model, UICollectionViewCell, IndexPath) -> Void
     
     var models: [Model]
     
@@ -39,27 +39,8 @@ class CollectionDataSource<Model>: NSObject, UICollectionViewDataSource {
             for: indexPath
         )
         
-        cellConfigurator(model, cell)
+        cellConfigurator(model, cell, indexPath)
         
         return cell
-    }
-}
-
-extension CollectionDataSource where Model == (filter: FilterProtocal, image: UIImage) {
-    static func make(for imageProcessors: [(FilterProtocal, UIImage)],
-                     reuseIdentifier: String = "FilterCell") -> CollectionDataSource {
-        return CollectionDataSource (
-            models: imageProcessors,
-            reuseIdentifier: reuseIdentifier
-        ) { (imageProcessor, cell) in
-            cell.backgroundColor = UIColor.white
-            
-            guard let cell = cell as? FilterCollectionViewCell else {
-                return
-            }
-
-            guard let image = imageProcessor.filter.process(image: imageProcessor.image) else { return }
-            cell.setup(image: image, title: imageProcessor.filter.name)
-        }
     }
 }
