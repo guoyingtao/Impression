@@ -25,6 +25,8 @@ class FilterCollectionView: UICollectionView {
         }
     }
     
+    var didSelectFilter: (FilterProtocal) -> Void = { _ in }
+    
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         self.delegate = self
@@ -38,7 +40,11 @@ class FilterCollectionView: UICollectionView {
 
 extension FilterCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
+        guard let filter = myDataSource?.models[indexPath.row].filter else {
+            return
+        }
+        
+        didSelectFilter(filter)
     }
 }
 

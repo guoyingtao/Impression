@@ -60,6 +60,11 @@ public class FilterViewController: UIViewController {
         let collectionViewModel = FilterCollectionViewModel()
         filterCollectionView?.viewModel = collectionViewModel
         
+        filterCollectionView?.didSelectFilter = {[weak self] filter in
+            guard let self = self else { return }
+            self.imageView?.image = filter.process(image: bigImage)
+        }
+        
         stackView = UIStackView()
         view.addSubview(stackView!)
         
