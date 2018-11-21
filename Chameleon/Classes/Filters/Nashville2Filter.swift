@@ -7,12 +7,14 @@
 
 import Foundation
 
-struct Nashville2Filter: FilterProtocal {
-    var name: String = "Nashville2"
+public struct Nashville2Filter: FilterProtocal {
+    public var name: String = "Nashville2"
     
-    var localizableNames: [String : String] = [:]
+    public var localizableNames: [String : String] = [:]
     
-    func process(image: UIImage) -> UIImage? {
+    public init() {}
+    
+    public func process(image: UIImage) -> UIImage? {
         guard let cgImage = image.cgImage else { return nil }
         
         let ciImage = CIImage(cgImage: cgImage)

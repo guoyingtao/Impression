@@ -12,7 +12,7 @@ class FilterManager {
     
     private init() {}
     
-    var filters: [FilterProtocal] = []
+    var filters: [FilterProtocal] = [OriginalFiler()]
     
     @discardableResult
     func register(filter: FilterProtocal) -> Bool {
@@ -40,6 +40,10 @@ class FilterManager {
         }
         
         return .none
+    }
+    
+    func removeAll() {
+        filters.removeAll()
     }
 }
 

@@ -22,8 +22,12 @@ class ViewController: UIViewController {
     
     
     @IBAction func showFilters(_ sender: Any) {
+        
+        
         let image = UIImage(named: "sunflower.jpg")
         let vc = Chameleon.createFilterViewController(image: image!)
+        
+        Chameleon.addCustomFilters(filters: [Nashville1Filter(), Nashville2Filter()])
         
         present(vc, animated: true, completion: nil)
     }    

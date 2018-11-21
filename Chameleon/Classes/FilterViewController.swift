@@ -79,19 +79,7 @@ public class FilterViewController: UIViewController {
     
     @objc func rotated() {
         updateLayout()
-    }
-    
-    public override func viewDidLayoutSubviews() {
-        print(stackView!.frame)
-    }
-    
-    public override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.willTransition(to: newCollection, with: coordinator)
-        
-        guard let flowLayout = filterCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout else {
-            return
-        }
-        flowLayout.invalidateLayout()
+        view.layoutIfNeeded()
     }
     
     fileprivate func initLayout() {
@@ -101,9 +89,6 @@ public class FilterViewController: UIViewController {
         
         stackView?.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        stackView?.layer.borderColor = UIColor.blue.cgColor
-        stackView?.layer.borderWidth = 4
         
         stackView?.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         stackView?.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
@@ -127,19 +112,16 @@ public class FilterViewController: UIViewController {
         stackView?.removeArrangedSubview(collectionView)
         
         if UIApplication.shared.statusBarOrientation.isPortrait {
-            containerVerticalHeightConstraint?.isActive = true
-            containerHorizontalWidthConstraint?.isActive = false
-
             stackView?.axis = .vertical
             
             stackView?.addArrangedSubview(demoView)
             stackView?.addArrangedSubview(collectionView)
             
             flowLayout.scrollDirection = .horizontal
+            
+            containerHorizontalWidthConstraint?.isActive = false
+            containerVerticalHeightConstraint?.isActive = true
         } else {
-            containerVerticalHeightConstraint?.isActive = false
-            containerHorizontalWidthConstraint?.isActive = true
-
             stackView?.axis = .horizontal
             
             if UIApplication.shared.statusBarOrientation == .landscapeLeft {
@@ -151,6 +133,9 @@ public class FilterViewController: UIViewController {
             }
             
             flowLayout.scrollDirection = .vertical
+            
+            containerVerticalHeightConstraint?.isActive = false
+            containerHorizontalWidthConstraint?.isActive = true
         }
     }
     

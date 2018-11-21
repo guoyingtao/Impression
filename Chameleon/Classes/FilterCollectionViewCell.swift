@@ -17,8 +17,6 @@ class FilterCollectionViewCell: UICollectionViewCell {
     }
     
     func setup(image: UIImage, title: String) {
-        print(image.size)
-        print(image.scale)
         imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height - 20))
         imageView?.contentMode = .scaleAspectFit
         imageView?.image = image

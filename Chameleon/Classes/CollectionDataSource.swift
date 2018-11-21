@@ -24,7 +24,6 @@ class CollectionDataSource<Model>: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(models.count)
         return models.count
     }
     

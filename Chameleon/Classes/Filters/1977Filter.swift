@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Filter1977Theme: FilterProtocal {
-    var name: String = "1977"
+public struct Filter1977Theme: FilterProtocal {
+    public var name: String = "1977"
     
-    var localizableNames: [String : String] = [:]
+    public var localizableNames: [String : String] = [:]
     
-    func process(image: UIImage) -> UIImage? {
+    public func process(image: UIImage) -> UIImage? {
         guard let cgImage = image.cgImage else { return nil }
         
         let ciImage = CIImage(cgImage: cgImage)
