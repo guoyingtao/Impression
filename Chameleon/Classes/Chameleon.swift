@@ -7,15 +7,18 @@
 
 import Foundation
 
-let filterThumbnailSize = CGSize(width: 120, height: 120)
+let filterThumbnailSize = CGSize(width: 120, height: 150)
 
 func createDefaultFilters() {
     FilterManager.shared.register(filter: Filter1977Theme())
     FilterManager.shared.register(filter: NashvilleFilter())
 }
 
-public func createFilterViewController(image: UIImage) -> FilterViewController {
-    createDefaultFilters()
+public func createFilterViewController(image: UIImage, useDefaultFilters: Bool = true) -> FilterViewController {
+    if useDefaultFilters {
+        createDefaultFilters()
+    }
+    
     return FilterViewController(image: image)
 }
 

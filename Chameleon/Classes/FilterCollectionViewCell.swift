@@ -17,15 +17,32 @@ class FilterCollectionViewCell: UICollectionViewCell {
     }
     
     func setup(image: UIImage, title: String) {
-        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height - 20))
-        imageView?.contentMode = .scaleAspectFit
+        backgroundColor = .black
+        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.width))
+        imageView?.contentMode = .scaleAspectFill
         imageView?.image = image
-                
-        titleLabel = UILabel(frame: CGRect(x: 0, y: imageView!.frame.maxY, width: frame.width, height: 20))
+        imageView?.clipsToBounds = true
+        
+        titleLabel = UILabel(frame: CGRect(x: 0, y: imageView!.frame.maxY, width: frame.width, height: frame.height - imageView!.frame.height))
         titleLabel?.textAlignment = .center
         titleLabel?.text = title
+        titleLabel?.textColor = .lightGray
+        titleLabel?.numberOfLines = 0
+        titleLabel?.lineBreakMode = .byWordWrapping
         
         addSubview(imageView!)
         addSubview(titleLabel!)
+    }
+    
+    func setFocus() {
+        imageView?.layer.borderWidth = 4
+        imageView?.layer.borderColor = UIColor.blue.cgColor
+        titleLabel?.textColor = .blue
+    }
+    
+    func removeFocus() {
+        imageView?.layer.borderWidth = 0
+        imageView?.layer.borderColor = UIColor.clear.cgColor
+        titleLabel?.textColor = .lightGray
     }
 }

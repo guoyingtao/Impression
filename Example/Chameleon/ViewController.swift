@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         
         
         let image = UIImage(named: "sunflower.jpg")
-        let vc = Chameleon.createFilterViewController(image: image!)
+        let vc = Chameleon.createFilterViewController(image: image!, useDefaultFilters: true)
         
         Chameleon.addCustomFilters(filters: [Nashville1Filter(), Nashville2Filter()])
         

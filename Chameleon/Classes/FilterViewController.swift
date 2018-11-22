@@ -67,6 +67,7 @@ public class FilterViewController: UIViewController {
         view.addSubview(stackView!)
         
         initLayout()
+        setCollectionViewDirection()
         updateLayout()
         
         NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
@@ -75,6 +76,24 @@ public class FilterViewController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         filterCollectionView?.reloadData()
+    }
+    
+    func setCollectionViewDirection() {
+        guard let flowLayout = filterCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+
+        if UIDevice.current.orientation.isLandscape {
+            flowLayout.scrollDirection = .vertical
+        } else {
+            flowLayout.scrollDirection = .horizontal
+        }
+        
+        flowLayout.invalidateLayout()
+    }
+    
+    override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        setCollectionViewDirection()
     }
     
     @objc func rotated() {
@@ -104,10 +123,6 @@ public class FilterViewController: UIViewController {
             return
         }
         
-        guard let flowLayout = filterCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout else {
-            return
-        }
-        
         stackView?.removeArrangedSubview(demoView)
         stackView?.removeArrangedSubview(collectionView)
         
@@ -116,8 +131,6 @@ public class FilterViewController: UIViewController {
             
             stackView?.addArrangedSubview(demoView)
             stackView?.addArrangedSubview(collectionView)
-            
-            flowLayout.scrollDirection = .horizontal
             
             containerHorizontalWidthConstraint?.isActive = false
             containerVerticalHeightConstraint?.isActive = true
@@ -131,8 +144,6 @@ public class FilterViewController: UIViewController {
                 stackView?.addArrangedSubview(demoView)
                 stackView?.addArrangedSubview(collectionView)
             }
-            
-            flowLayout.scrollDirection = .vertical
             
             containerVerticalHeightConstraint?.isActive = false
             containerHorizontalWidthConstraint?.isActive = true

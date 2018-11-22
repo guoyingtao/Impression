@@ -26,6 +26,7 @@ class FilterCollectionView: UICollectionView {
     }
     
     var didSelectFilter: (FilterProtocal) -> Void = { _ in }
+    var lastSelectedIndex = 0
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -44,7 +45,21 @@ extension FilterCollectionView: UICollectionViewDelegate {
             return
         }
         
-        didSelectFilter(filter)
+        if lastSelectedIndex != indexPath.row {
+            let lastIndexPath = IndexPath(item: lastSelectedIndex, section: 0)
+            if let lastSelectedCell = collectionView.cellForItem(at: lastIndexPath) as? FilterCollectionViewCell {
+                lastSelectedCell.removeFocus()
+            }
+            lastSelectedIndex = indexPath.row
+        }
+        
+        if let cell = collectionView.cellForItem(at: indexPath) as? FilterCollectionViewCell {
+            cell.setFocus()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.didSelectFilter(filter)
+        }
     }
 }
 
