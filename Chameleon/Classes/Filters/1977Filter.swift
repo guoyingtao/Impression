@@ -38,6 +38,6 @@ public struct Filter1977Theme: FilterProtocal {
                 "inputPoint4": CIVector(x: 1, y: 1),
                 ])
         
-        return getImage(from: newCiImage)
+        return ImageHelper.getImage(fromCIImage: newCiImage)
     }
 }

@@ -25,11 +25,17 @@ class ViewController: UIViewController {
         
         
         let image = UIImage(named: "sunflower.jpg")
-        let vc = Chameleon.createFilterViewController(image: image!, useDefaultFilters: true)
+        let vc = Chameleon.createFilterViewController(image: image!, delegate: self, useDefaultFilters: true)
         
-        Chameleon.addCustomFilters(filters: [Nashville1Filter(), Nashville2Filter()])
+        Chameleon.addCustomFilters(filters: [ToasterFilter(), ClarendonFilter()])
         
         present(vc, animated: true, completion: nil)
     }    
+}
+
+extension ViewController: FilterViewControllerProtocal {
+    func didSelectFilter(image: UIImage) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 

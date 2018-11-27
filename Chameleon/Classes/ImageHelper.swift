@@ -19,4 +19,21 @@ struct ImageHelper {
         let color = getColor(red: red, green: green, blue: blue, alpha: alpha)
         return CIImage(color: color).cropped(to: rect)
     }
+    
+    static func getImage(fromCIImage ciImage: CIImage, ciContext: CIContext? = nil) -> UIImage? {
+        var context = ciContext
+        
+        if context == nil {
+            context = FilterManager.shared.ciContext
+        }
+        
+        if context == nil {
+            context = CIContext()
+        }
+        
+        guard let cgImage = context?.createCGImage(ciImage, from: ciImage.extent) else {
+            return nil
+        }
+        return UIImage(cgImage: cgImage)
+    }
 }

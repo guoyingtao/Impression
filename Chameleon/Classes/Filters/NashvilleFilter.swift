@@ -37,6 +37,6 @@ public struct NashvilleFilter: FilterProtocal {
                 "inputBackgroundImage": backgroundImage2,
                 ])
         
-        return getImage(from: newCiImage)
+        return ImageHelper.getImage(fromCIImage: newCiImage)
     }
 }

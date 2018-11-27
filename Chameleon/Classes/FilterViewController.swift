@@ -7,20 +7,35 @@
 
 import UIKit
 
+public protocol FilterViewControllerProtocal {
+    func didSelectFilter(image: UIImage)
+}
+
+public enum FilterViewControllerMode {
+    case normal
+    case customizable
+}
+
 public class FilterViewController: UIViewController {
     
     let containerHeight: CGFloat = 160
     
     var image: UIImage?
     var demoView: FilterDemoImageView?
+    var selectedFilter: FilterProtocal?
     var filterCollectionView: FilterCollectionView?
     var stackView: UIStackView?
     
     var containerVerticalHeightConstraint: NSLayoutConstraint?
     var containerHorizontalWidthConstraint: NSLayoutConstraint?
     
-    init(image: UIImage) {
+    var mode: FilterViewControllerMode = .normal
+    
+    var delegate: FilterViewControllerProtocal?
+    
+    init(image: UIImage, mode: FilterViewControllerMode = .normal) {
         self.image = image
+        self.mode = mode
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,6 +48,13 @@ public class FilterViewController: UIViewController {
         
         guard let image = image else {
             return
+        }
+        
+        if mode == .normal {
+            navigationController?.isNavigationBarHidden = true
+            navigationController?.isToolbarHidden = false
+            
+            createToolbar()
         }
         
         let bigImageHeight = max(view.frame.width - containerHeight, view.frame.height - containerHeight)
@@ -60,6 +82,7 @@ public class FilterViewController: UIViewController {
         
         filterCollectionView?.didSelectFilter = {[weak self] filter in
             guard let self = self else { return }
+            self.selectedFilter = filter
             self.demoView?.image = filter.process(image: bigImage)
         }
         
@@ -175,5 +198,44 @@ public class FilterViewController: UIViewController {
         
         return newImage
     }
+}
 
+// Create Toolbar UI for normal mode
+extension FilterViewController {
+    func createToolbar() {
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissSelf))
+        let confirmButton = UIBarButtonItem(title: "Confirm", style: .plain, target: self, action: #selector(confirm))
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        toolbarItems = [cancelButton, spacer, confirmButton]
+    }
+    
+    @objc func dismissSelf() {
+        dismiss(animated: true)
+    }
+    
+    @objc func confirm() {
+        let spinner = displaySpinner(onView: self.view)
+        
+        func processImage() {
+            guard let image = applySelectedFilter() else {
+                return
+            }
+            
+            removeSpinner(spinner: spinner)            
+            delegate?.didSelectFilter(image: image)
+        }
+        
+        DispatchQueue.global().async {
+            processImage()
+        }
+    }
+}
+
+// Public API
+extension FilterViewController {
+    func applySelectedFilter() -> UIImage? {
+        guard let image = image else { return nil }
+        return selectedFilter?.process(image: image)
+    }
 }

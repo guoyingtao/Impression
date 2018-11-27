@@ -10,9 +10,12 @@ import Foundation
 class FilterManager {
     static var shared: FilterManager = FilterManager()
     
-    private init() {}
+    private init() {
+        ciContext = CIContext()
+    }
     
     var filters: [FilterProtocal] = [OriginalFiler()]
+    var ciContext: CIContext
     
     @discardableResult
     func register(filter: FilterProtocal) -> Bool {

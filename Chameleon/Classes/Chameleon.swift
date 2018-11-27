@@ -5,7 +5,7 @@
 //  Created by Echo on 11/16/18.
 //
 
-import Foundation
+import UIKit
 
 let filterThumbnailSize = CGSize(width: 120, height: 150)
 
@@ -14,12 +14,25 @@ func createDefaultFilters() {
     FilterManager.shared.register(filter: NashvilleFilter())
 }
 
-public func createFilterViewController(image: UIImage, useDefaultFilters: Bool = true) -> FilterViewController {
+public func createFilterViewController(image: UIImage, delegate: FilterViewControllerProtocal?, useDefaultFilters: Bool = true) -> UIViewController {
     if useDefaultFilters {
         createDefaultFilters()
     }
     
-    return FilterViewController(image: image)
+    let filterViewController = FilterViewController(image: image)
+    filterViewController.delegate = delegate
+    let navigationController = UINavigationController(rootViewController: filterViewController)
+    return navigationController
+}
+
+public func createCustomFilterViewController(image: UIImage, delegate: FilterViewControllerProtocal?, useDefaultFilters: Bool = true) -> FilterViewController {
+    if useDefaultFilters {
+        createDefaultFilters()
+    }
+    
+    let filterViewController = FilterViewController(image: image, mode: .customizable)
+    filterViewController.delegate = delegate
+    return filterViewController
 }
 
 public func removeAllFilters() {
