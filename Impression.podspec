@@ -22,11 +22,11 @@ Pod::Spec.new do |s|
 Impression is a swift photo filter tool.
                        DESC
 
-  s.homepage         = 'https://github.com/starecho/Impression'
+  s.homepage         = 'https://github.com/guoyingtao/Impression'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'starecho' => 'guoyingtao@outlook.com' }
-  s.source           = { :git => 'https://github.com/starecho/Impression.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/guoyingtao/Impression.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '11.0'
