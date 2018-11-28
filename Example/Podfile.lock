@@ -1,16 +1,16 @@
 PODS:
-  - Chameleon (0.1.0)
+  - Impression (0.1.0)
 
 DEPENDENCIES:
-  - Chameleon (from `../`)
+  - Impression (from `../`)
 
 EXTERNAL SOURCES:
-  Chameleon:
+  Impression:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Chameleon: b39f52fca2fb494a16c6577b0f23a52607ba1bec
+  Impression: 6e8fd8fc6f8a7ece3bd50479fc01a2107413a326
 
-PODFILE CHECKSUM: a9ae73a6c96fa1b1756b821898504ec5985ccb04
+PODFILE CHECKSUM: d93739a76d41c728500524f0f154f76d2baa6cc3
 
 COCOAPODS: 1.6.0.beta.2

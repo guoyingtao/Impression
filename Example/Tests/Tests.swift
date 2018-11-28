@@ -1,5 +1,5 @@
 import XCTest
-import Chameleon
+import Impression
 
 class Tests: XCTestCase {
     
