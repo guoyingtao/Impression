@@ -13,7 +13,14 @@ public enum LocaleLanguageCode: String {
     case English = "en"
     case SimplifiedChinese = "zh-Hans"
     case TraditionalChiniese = "zh-Hant"
-    // To add more
+    case Japanese = "ja"
+    case French = "fa"
+    case Spanish = "es"
+    case German = "de"
+    case Arabic = "ar"
+    case Russia = "ru"
+    case Korea = "ko"
+    case Portuguese = "pt-PT"
 }
 
 func createDefaultFilters() {

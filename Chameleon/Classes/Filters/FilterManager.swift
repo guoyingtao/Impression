@@ -11,7 +11,6 @@ class FilterManager {
     static var shared: FilterManager = FilterManager()
     
     private init() {
-        print(Bundle.main.preferredLocalizations)
         ciContext = CIContext()
     }
     

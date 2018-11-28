@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         let image = UIImage(named: "sunflower.jpg")
         let vc = Chameleon.createFilterViewController(image: image!, delegate: self, useDefaultFilters: true)
         
-        Chameleon.addCustomFilters(filters: [ToasterFilter(), ClarendonFilter()])
+        Chameleon.addCustomFilters(filters: [ToasterFilter(), ClarendonFilter(), HazeRemovalFilter()])
         
         present(vc, animated: true, completion: nil)
     }    
