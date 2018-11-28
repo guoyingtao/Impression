@@ -8,9 +8,9 @@
 import Foundation
 
 public struct Filter1977Theme: FilterProtocal {
-    public var name: String = "1977"
+    public var distinctName: String = "1977"
     
-    public var localizableNames: [String : String] = [:]
+    public var localizableNames: [String : String] = [LocaleLanguageCode.English.rawValue: "1977", LocaleLanguageCode.SimplifiedChinese.rawValue: "1977年"]
     
     public func process(image: UIImage) -> UIImage? {
         guard let cgImage = image.cgImage else { return nil }

@@ -8,9 +8,9 @@
 import Foundation
 
 struct OriginalFiler: FilterProtocal {
-    var name: String = "Original"
+    var distinctName: String = "Original"
     
-    var localizableNames: [String : String] = [:]
+    var localizableNames: [String : String] = [LocaleLanguageCode.English.rawValue: "Original", LocaleLanguageCode.SimplifiedChinese.rawValue: "原图"]
     
     func process(image: UIImage) -> UIImage? {
         return image

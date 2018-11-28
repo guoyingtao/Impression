@@ -5,10 +5,20 @@
 //  Created by Echo on 11/16/18.
 //
 
-import Foundation
+import UIKit
 
 public protocol FilterProtocal {
-    var name: String { get set }
+    var distinctName: String { get set }
     var localizableNames: [String: String] { get set }
     func process(image: UIImage) -> UIImage?
+}
+
+extension FilterProtocal {
+    func getDisplayName(byLocale locale: String = "en") -> String {
+        if let name = localizableNames[locale] {
+            return name
+        }
+        
+        return distinctName
+    }
 }

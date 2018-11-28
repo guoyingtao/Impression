@@ -11,6 +11,7 @@ class FilterManager {
     static var shared: FilterManager = FilterManager()
     
     private init() {
+        print(Bundle.main.preferredLocalizations)
         ciContext = CIContext()
     }
     
@@ -37,7 +38,7 @@ class FilterManager {
     
     func contains(filter: FilterProtocal) -> ContainsType {
         for i in 0..<filters.count {
-            if filters[i].name == filter.name {
+            if filters[i].distinctName == filter.distinctName {
                 return .contains(index: i)
             }
         }

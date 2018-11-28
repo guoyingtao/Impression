@@ -8,9 +8,9 @@
 import Foundation
 
 public struct ToasterFilter: FilterProtocal {
-    public var name: String = "Toaster"
+    public var distinctName: String = "Toaster"
     
-    public var localizableNames: [String : String] = [:]
+    public var localizableNames: [String : String] = [LocaleLanguageCode.English.rawValue: "Toaster", LocaleLanguageCode.SimplifiedChinese.rawValue: "祝酒"]
     
     public init() {}
     

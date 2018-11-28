@@ -9,6 +9,13 @@ import UIKit
 
 let filterThumbnailSize = CGSize(width: 120, height: 150)
 
+public enum LocaleLanguageCode: String {
+    case English = "en"
+    case SimplifiedChinese = "zh-Hans"
+    case TraditionalChiniese = "zh-Hant"
+    // To add more
+}
+
 func createDefaultFilters() {
     FilterManager.shared.register(filter: Filter1977Theme())
     FilterManager.shared.register(filter: NashvilleFilter())

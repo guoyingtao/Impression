@@ -8,9 +8,9 @@
 import Foundation
 
 public struct ClarendonFilter: FilterProtocal {
-    public var name: String = "Clarendon"
+    public var distinctName: String = "Clarendon"
     
-    public var localizableNames: [String : String] = [:]
+    public var localizableNames: [String : String] = [LocaleLanguageCode.English.rawValue: "Clarendon", LocaleLanguageCode.SimplifiedChinese.rawValue: "克拉伦登"]
     
     public init() {}
     
