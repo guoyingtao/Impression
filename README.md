@@ -4,3 +4,6 @@
 
 # Impression
 A swift photo filter
+
+## Install
+pod 'Impression',  '~> 0.1.0''
