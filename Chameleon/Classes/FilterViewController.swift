@@ -222,8 +222,11 @@ extension FilterViewController {
                 return
             }
             
-            removeSpinner(spinner: spinner)            
-            delegate?.didSelectFilter(image: image)
+            DispatchQueue.main.async {
+                self.removeSpinner(spinner: spinner)
+                self.delegate?.didSelectFilter(image: image)
+                self.dismissSelf()
+            }
         }
         
         DispatchQueue.global().async {

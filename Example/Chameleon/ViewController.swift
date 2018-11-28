@@ -10,9 +10,11 @@ import UIKit
 import Chameleon
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageView.image = UIImage(named: "sunflower.jpg")
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,10 +24,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func showFilters(_ sender: Any) {
-        
-        
-        let image = UIImage(named: "sunflower.jpg")
-        let vc = Chameleon.createFilterViewController(image: image!, delegate: self, useDefaultFilters: true)
+        let image = UIImage(named: "sunflower.jpg")!
+        let vc = Chameleon.createFilterViewController(image: image, delegate: self, useDefaultFilters: true)
         
         Chameleon.addCustomFilters(filters: [ToasterFilter(), ClarendonFilter(), HazeRemovalFilter()])
         
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
 
 extension ViewController: FilterViewControllerProtocal {
     func didSelectFilter(image: UIImage) {
-        self.dismiss(animated: true, completion: nil)
+        imageView.image = image
     }
 }
 
