@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Impression'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'A swift photo filter'
   s.swift_version    = '4.2'
 
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-Impression is a swift photo filter tool.
+Impression is a swift photo filter tool which is easy for users to add their filters.
                        DESC
 
   s.homepage         = 'https://github.com/guoyingtao/Impression'
@@ -27,7 +27,7 @@ Impression is a swift photo filter tool.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'starecho' => 'guoyingtao@outlook.com' }
   s.source           = { :git => 'https://github.com/guoyingtao/Impression.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.social_media_url = 'https://twitter.com/guoyingtao'
 
   s.ios.deployment_target = '11.0'
 
@@ -36,8 +36,4 @@ Impression is a swift photo filter tool.
   # s.resource_bundles = {
   #   'Impression' => ['Impression/Assets/*.png']
   # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
