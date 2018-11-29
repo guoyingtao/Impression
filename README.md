@@ -27,3 +27,31 @@ The default photo filters come from [YPImagePicker](https://github.com/Yummypets
 
 ### CocoaPods
 pod 'Impression',  '~> 0.1.0''
+
+## Usage
+* Create default FilterViewController with default filters
+
+```swift
+    let image = UIImage(named: "sunflower.jpg")!
+    let vc = Impression.createFilterViewController(image: image, delegate: self, useDefaultFilters: true)
+```
+
+* Add custom filters
+
+```swift
+Impression.addCustomFilters(filters: [ToasterFilter(), ClarendonFilter(), HazeRemovalFilter()])
+```
+* Create custom FilterViewController which can be embeded into another UIViewController
+
+```swift
+    let image = UIImage(named: "sunflower.jpg")!
+    let vc = Impression.createCustomFilterViewController(image: image, delegate: self, useDefaultFilters: true)
+```
+
+* Remove default filters
+
+```swift
+    Impression.removeAllFilters()
+```
+
+
