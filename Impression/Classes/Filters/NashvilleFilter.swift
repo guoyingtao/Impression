@@ -10,8 +10,8 @@ import Foundation
 public struct NashvilleFilter: FilterProtocal {
     public var distinctName: String = "Nashville"
     
-    public var localizableNames: [String : String] = [LocaleLanguageCode.English.rawValue: "Nashville",
-        LocaleLanguageCode.SimplifiedChinese.rawValue: "纳什维尔"]
+    public var localizableNames: [LocaleLanguageCode : String] = [.English: "Nashville",
+        .SimplifiedChinese: "纳什维尔"]
     
     public init() {}
     

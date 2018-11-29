@@ -10,7 +10,7 @@ import Foundation
 public struct ToasterFilter: FilterProtocal {
     public var distinctName: String = "Toaster"
     
-    public var localizableNames: [String : String] = [LocaleLanguageCode.English.rawValue: "Toaster", LocaleLanguageCode.SimplifiedChinese.rawValue: "祝酒"]
+    public var localizableNames: [LocaleLanguageCode : String] = [LocaleLanguageCode.English: "Toaster", LocaleLanguageCode.SimplifiedChinese: "祝酒"]
     
     public init() {}
     
