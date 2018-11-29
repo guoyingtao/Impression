@@ -11,5 +11,19 @@
 # Impression
 A swift photo filter tool which is easy for user to add their own photo filters.
 
+## Credits
+The default photo filters come from [YPImagePicker](https://github.com/Yummypets/YPImagePicker)
+
+## Features
+* Default photo filters provided
+* Easy to add your own photo filters as far as they comform to FilterProtocal
+* Easy to add filters with localized name.
+
+## Requirements
+* iOS 11.0+
+* Xcode 10.0+
+
 ## Install
+
+### CocoaPods
 pod 'Impression',  '~> 0.1.0''
