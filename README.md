@@ -12,7 +12,7 @@
 A swift photo filter tool which is easy for user to add their own photo filters.
 
 ## Credits
-The default photo filters come from [YPImagePicker](https://github.com/Yummypets/YPImagePicker)
+The default photo filters come from [YPImagePicker](https://github.com/Yummypets/YPImagePicker).
 
 ## Features
 * Default photo filters provided
