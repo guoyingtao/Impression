@@ -59,10 +59,10 @@ Impression.addCustomFilters(filters: [ToasterFilter(), ClarendonFilter(), HazeRe
 ```swift
 YourFilter: Impression.FilterProtocal {
 
-public var localizableNames: [String : String] = 
-[LocaleLanguageCode.English.rawValue: "English Name", 
-LocaleLanguageCode.SimplifiedChinese.rawValue: "中文名",
-LocaleLanguageCode.Japanese.rawValue: "日本語の名前"]
+public var localizableNames: [Impression.LocaleLanguageCode : String] = 
+[.English: "English Name", 
+.SimplifiedChinese: "中文名",
+.Japanese: "日本語の名前"]
 
 }
 ```
