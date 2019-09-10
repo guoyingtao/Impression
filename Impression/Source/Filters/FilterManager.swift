@@ -14,11 +14,11 @@ class FilterManager {
         ciContext = CIContext()
     }
     
-    var filters: [FilterProtocal] = [OriginalFiler()]
+    var filters: [FilterProtocol] = [OriginalFiler()]
     var ciContext: CIContext
     
     @discardableResult
-    func register(filter: FilterProtocal) -> Bool {
+    func register(filter: FilterProtocol) -> Bool {
         guard case .none = contains(filter: filter) else {
             return false
         }
@@ -27,7 +27,7 @@ class FilterManager {
         return true
     }
     
-    func unregister(filter: FilterProtocal) {
+    func unregister(filter: FilterProtocol) {
         guard case .contains(let index) = contains(filter: filter) else {
             return
         }
@@ -35,7 +35,7 @@ class FilterManager {
         filters.remove(at: index)
     }
     
-    func contains(filter: FilterProtocal) -> ContainsType {
+    func contains(filter: FilterProtocol) -> ContainsType {
         for i in 0..<filters.count {
             if filters[i].distinctName == filter.distinctName {
                 return .contains(index: i)

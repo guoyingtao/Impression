@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol FilterViewControllerProtocal {
+public protocol FilterViewControllerProtocol {
     func didSelectFilter(image: UIImage)
 }
 
@@ -22,7 +22,7 @@ public class FilterViewController: UIViewController {
     
     var image: UIImage?
     var demoView: FilterDemoImageView?
-    var selectedFilter: FilterProtocal?
+    var selectedFilter: FilterProtocol?
     var filterCollectionView: FilterCollectionView?
     var stackView: UIStackView?
     
@@ -31,7 +31,7 @@ public class FilterViewController: UIViewController {
     
     var mode: FilterViewControllerMode = .normal
     
-    var delegate: FilterViewControllerProtocal?
+    var delegate: FilterViewControllerProtocol?
     
     init(image: UIImage, mode: FilterViewControllerMode = .normal) {
         self.image = image

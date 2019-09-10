@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Filter1977Theme: FilterProtocal {
+public struct Filter1977Theme: FilterProtocol {
     public var distinctName: String = "1977"
     
     public var localizableNames: [LocaleLanguageCode : String] = [.English: "1977", .SimplifiedChinese: "1977年"]

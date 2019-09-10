@@ -48,7 +48,7 @@
 		5FD3C75E21AE3AC800A70A19 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FD3C75F21AE3AC800A70A19 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5FD3C76021AE3AC800A70A19 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Main.strings"; sourceTree = "<group>"; };
-		5FD3C76A21AE3BFA00A70A19 /* Impression.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Impression.podspec; path = ../Impression.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5FD3C76A21AE3BFA00A70A19 /* Impression.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Impression.podspec; path = ../Impression.podspec; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Impression_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Impression_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62F4A9859EF04B5CA78D44B1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B09591855E635E0C4D70BAEA /* Pods_Impression_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Impression_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };

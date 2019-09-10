@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct OriginalFiler: FilterProtocal {
+struct OriginalFiler: FilterProtocol {
     var distinctName: String = "Original"
     
     var localizableNames: [LocaleLanguageCode : String] = [.English: "Original", .SimplifiedChinese: "原图"]

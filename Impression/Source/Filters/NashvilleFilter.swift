@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NashvilleFilter: FilterProtocal {
+public struct NashvilleFilter: FilterProtocol {
     public var distinctName: String = "Nashville"
     
     public var localizableNames: [LocaleLanguageCode : String] = [.English: "Nashville",

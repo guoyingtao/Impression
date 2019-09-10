@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public struct ToasterFilter: FilterProtocal {
+public struct ToasterFilter: FilterProtocol {
     public var distinctName: String = "Toaster"
     
     public var localizableNames: [LocaleLanguageCode : String] = [LocaleLanguageCode.English: "Toaster", LocaleLanguageCode.SimplifiedChinese: "祝酒"]

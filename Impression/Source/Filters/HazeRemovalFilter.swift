@@ -90,7 +90,7 @@ kernel vec4 myHazeRemovalKernel(
     }
 }
 
-public struct HazeRemovalFilter: FilterProtocal {
+public struct HazeRemovalFilter: FilterProtocol {
     public var distinctName: String = "Haze Removal"
     
     public var localizableNames: [LocaleLanguageCode : String] = [.English: "Haze Removal", .SimplifiedChinese: "消除朦胧",

@@ -9,7 +9,7 @@ import Foundation
 
 struct FilterCollectionViewModel {
     
-    var filters: [FilterProtocal] {
+    var filters: [FilterProtocol] {
         get {
             return FilterManager.shared.filters
         }

@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/swift-4.2-orange.svg" alt="swift 4.2 badge" />
+    <img src="https://img.shields.io/badge/swift-5.0-orange.svg" alt="swift 5.0 badge" />
     <img src="https://img.shields.io/badge/platform-iOS-lightgrey.svg" alt="platform iOS badge" />
     <img src="https://img.shields.io/badge/license-MIT-black.svg" alt="license MIT badge" />   
 </p>
@@ -16,7 +16,7 @@ The default photo filters come from [YPImagePicker](https://github.com/Yummypets
 
 ## Features
 * Default photo filters provided
-* Easy to add your own photo filters as far as they comform to FilterProtocal
+* Easy to add your own photo filters as far as they comform to FilterProtocol
 * Easy to add filters with localized name.
 
 ## Requirements
@@ -26,7 +26,7 @@ The default photo filters come from [YPImagePicker](https://github.com/Yummypets
 ## Install
 
 ### CocoaPods
-pod 'Impression',  '~> 0.1.1''
+pod 'Impression',  '~> 1.1.0''
 
 ## Usage
 * Create default FilterViewController with default filters
@@ -57,7 +57,7 @@ Impression.addCustomFilters(filters: [ToasterFilter(), ClarendonFilter(), HazeRe
 * Provide localized name for your filter
 
 ```swift
-YourFilter: Impression.FilterProtocal {
+YourFilter: Impression.FilterProtocol {
 
 public var localizableNames: [Impression.LocaleLanguageCode : String] = 
 [.English: "English Name", 

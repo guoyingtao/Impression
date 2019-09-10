@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Impression'
-  s.version          = '0.1.1'
+  s.version          = '1.1.0'
   s.summary          = 'A swift photo filter'
   s.swift_version    = '5.0'
 

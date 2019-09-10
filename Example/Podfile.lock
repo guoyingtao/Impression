@@ -1,5 +1,5 @@
 PODS:
-  - Impression (0.1.1)
+  - Impression (1.1.0)
 
 DEPENDENCIES:
   - Impression (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Impression: b63fae1bd5b9ff6a0d382567de88b2919d86ca40
+  Impression: 39e1b7d3fcbf14a2bf6d178ee824cf3c72b86ccc
 
 PODFILE CHECKSUM: 9892a17adab118c427ca06800ff892f5b6967877
 

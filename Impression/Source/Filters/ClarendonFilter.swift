@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ClarendonFilter: FilterProtocal {
+public struct ClarendonFilter: FilterProtocol {
     public var distinctName: String = "Clarendon"
     
     public var localizableNames: [LocaleLanguageCode : String] = [.English: "Clarendon", .SimplifiedChinese: "克拉伦登"]

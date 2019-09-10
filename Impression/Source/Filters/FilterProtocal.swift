@@ -1,5 +1,5 @@
 //
-//  FilterProtocal.swift
+//  FilterProtocol.swift
 //  Impression
 //
 //  Created by Echo on 11/16/18.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-public protocol FilterProtocal {
+public protocol FilterProtocol {
     var distinctName: String { get set }
     var localizableNames: [LocaleLanguageCode: String] { get set }
     func process(image: UIImage) -> UIImage?
 }
 
-extension FilterProtocal {
+extension FilterProtocol {
     func getDisplayNameByLocale(_ locale: String = "en") -> String {
         guard let key = LocaleLanguageCode(rawValue: locale) else {
             return distinctName

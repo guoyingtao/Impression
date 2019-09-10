@@ -10,7 +10,7 @@ import UIKit
 class FilterCollectionView: UICollectionView {
 
     var image: UIImage?
-    var myDataSource: CollectionDataSource<(filter: FilterProtocal, image: UIImage)>?
+    var myDataSource: CollectionDataSource<(filter: FilterProtocol, image: UIImage)>?
     
     var viewModel: FilterCollectionViewModel? {
         didSet {
@@ -25,7 +25,7 @@ class FilterCollectionView: UICollectionView {
         }
     }
     
-    var didSelectFilter: (FilterProtocal) -> Void = { _ in }
+    var didSelectFilter: (FilterProtocol) -> Void = { _ in }
     var lastSelectedIndex = 0
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
@@ -63,8 +63,8 @@ extension FilterCollectionView: UICollectionViewDelegate {
     }
 }
 
-extension CollectionDataSource where Model == (filter: FilterProtocal, image: UIImage) {
-    static func make(for imageProcessors: [(FilterProtocal, UIImage)],
+extension CollectionDataSource where Model == (filter: FilterProtocol, image: UIImage) {
+    static func make(for imageProcessors: [(FilterProtocol, UIImage)],
                      reuseIdentifier: String = "FilterCell") -> CollectionDataSource {
         return CollectionDataSource (
             models: imageProcessors,
