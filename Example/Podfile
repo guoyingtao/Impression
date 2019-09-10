@@ -3,9 +3,4 @@ use_frameworks!
 target 'Impression_Example' do
   pod 'Impression', :path => '../'
 
-  target 'Impression_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end
