@@ -7,8 +7,8 @@
 
 import UIKit
 
-public protocol FilterViewControllerProtocol {
-    func didSelectFilter(image: UIImage)
+public protocol FilterViewControllerDelegate {
+    func didSelectFilter(_ filterViewController: FilterViewController, image: UIImage)
 }
 
 public enum FilterViewControllerMode {
@@ -31,7 +31,7 @@ public class FilterViewController: UIViewController {
     
     var mode: FilterViewControllerMode = .normal
     
-    var delegate: FilterViewControllerProtocol?
+    var delegate: FilterViewControllerDelegate?
     
     init(image: UIImage, mode: FilterViewControllerMode = .normal) {
         self.image = image
@@ -224,7 +224,7 @@ extension FilterViewController {
             
             DispatchQueue.main.async {
                 self.removeSpinner(spinner: spinner)
-                self.delegate?.didSelectFilter(image: image)
+                self.delegate?.didSelectFilter(self, image: image)
                 self.dismissSelf()
             }
         }

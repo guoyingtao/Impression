@@ -28,7 +28,7 @@ func createDefaultFilters() {
     FilterManager.shared.register(filter: NashvilleFilter())
 }
 
-public func createFilterViewController(image: UIImage, delegate: FilterViewControllerProtocol?, useDefaultFilters: Bool = true) -> UIViewController {
+public func createFilterViewController(image: UIImage, delegate: FilterViewControllerDelegate?, useDefaultFilters: Bool = true) -> UIViewController {
     if useDefaultFilters {
         createDefaultFilters()
     }
@@ -39,7 +39,7 @@ public func createFilterViewController(image: UIImage, delegate: FilterViewContr
     return navigationController
 }
 
-public func createCustomFilterViewController(image: UIImage, delegate: FilterViewControllerProtocol?, useDefaultFilters: Bool = true) -> FilterViewController {
+public func createCustomFilterViewController(image: UIImage, delegate: FilterViewControllerDelegate?, useDefaultFilters: Bool = true) -> FilterViewController {
     if useDefaultFilters {
         createDefaultFilters()
     }

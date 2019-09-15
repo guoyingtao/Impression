@@ -28,6 +28,7 @@
 		5FC9CE4B2327520100634CAA /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5FC9CE482327520100634CAA /* LICENSE */; };
 		5FC9CE4C2327520100634CAA /* Impression.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 5FC9CE492327520100634CAA /* Impression.podspec */; };
 		5FC9CE4D2327520100634CAA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5FC9CE4A2327520100634CAA /* README.md */; };
+		5FFD2CE32328791400D5546D /* ImpressionLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5FFD2CE52328791400D5546D /* ImpressionLocalizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		5FC9CE482327520100634CAA /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		5FC9CE492327520100634CAA /* Impression.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Impression.podspec; sourceTree = SOURCE_ROOT; };
 		5FC9CE4A2327520100634CAA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		5FFD2CE42328791400D5546D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ImpressionLocalizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		5FC9CE23232751D400634CAA /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				5FFD2CE0232878EF00D5546D /* Resources */,
 				5FC9CE24232751D400634CAA /* Filters */,
 				5FC9CE2D232751D400634CAA /* CollectionDataSource.swift */,
 				5FC9CE2E232751D400634CAA /* FilterCollectionViewModel.swift */,
@@ -135,6 +138,14 @@
 				5FC9CE32232751D400634CAA /* UIViewControllerExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5FFD2CE0232878EF00D5546D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5FFD2CE52328791400D5546D /* ImpressionLocalizable.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +216,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FFD2CE32328791400D5546D /* ImpressionLocalizable.strings in Resources */,
 				5FC9CE4D2327520100634CAA /* README.md in Resources */,
 				5FC9CE4B2327520100634CAA /* LICENSE in Resources */,
 				5FC9CE4C2327520100634CAA /* Impression.podspec in Resources */,
@@ -239,6 +251,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5FFD2CE52328791400D5546D /* ImpressionLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5FFD2CE42328791400D5546D /* en */,
+			);
+			name = ImpressionLocalizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		5FC9CE1E2327511700634CAA /* Debug */ = {
