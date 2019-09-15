@@ -44,7 +44,7 @@ public func createCustomFilterViewController(image: UIImage, delegate: FilterVie
         createDefaultFilters()
     }
     
-    let filterViewController = FilterViewController(image: image, mode: .customizable)
+    let filterViewController = FilterViewController(image: image, mode: .custom)
     filterViewController.delegate = delegate
     return filterViewController
 }

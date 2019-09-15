@@ -13,7 +13,7 @@ public protocol FilterViewControllerDelegate {
 
 public enum FilterViewControllerMode {
     case normal
-    case customizable
+    case custom
 }
 
 public class FilterViewController: UIViewController {
