@@ -26,7 +26,7 @@ The default photo filters come from [YPImagePicker](https://github.com/Yummypets
 ## Install
 
 ### CocoaPods
-pod 'Impression',  '~> 1.1.0''
+pod 'Impression',  '~> 1.1.0'
 
 ## Usage
 * Create default FilterViewController with default filters
