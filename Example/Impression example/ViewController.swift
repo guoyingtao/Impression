@@ -33,8 +33,8 @@ class ViewController: UIViewController {
     }    
 }
 
-extension ViewController: FilterViewControllerProtocol {
-    func didSelectFilter(image: UIImage) {
+extension ViewController: FilterViewControllerDelegate {
+    func didSelectFilter(_ filterViewController: FilterViewController, image: UIImage) {
         imageView.image = image
     }
 }

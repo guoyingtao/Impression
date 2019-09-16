@@ -241,4 +241,8 @@ extension FilterViewController {
         guard let image = image else { return nil }
         return selectedFilter?.process(image: image)
     }
+    
+    public func applySelectedFilter(with image: UIImage) -> UIImage? {
+        selectedFilter?.process(image: image)
+    }
 }
