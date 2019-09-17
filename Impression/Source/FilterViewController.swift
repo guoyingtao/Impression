@@ -20,7 +20,11 @@ public class FilterViewController: UIViewController {
     
     let containerHeight: CGFloat = 160
     
-    var image: UIImage?
+    public var image: UIImage? {
+        didSet {
+            setUIWith(image)
+        }
+    }
     var demoView: FilterDemoImageView?
     var selectedFilter: FilterProtocol?
     var filterCollectionView: FilterCollectionView?
@@ -45,11 +49,7 @@ public class FilterViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard let image = image else {
-            return
-        }
-        
+                
         if mode == .normal {
             navigationController?.isNavigationBarHidden = true
             navigationController?.isToolbarHidden = false
@@ -57,34 +57,7 @@ public class FilterViewController: UIViewController {
             createToolbar()
         }
         
-        let bigImageHeight = max(view.frame.width - containerHeight, view.frame.height - containerHeight)
-        guard let bigImage = resizeImage(image: image, targetSize: CGSize(width: bigImageHeight, height: bigImageHeight)) else {
-            return
-        }
-        
-        guard let smallImage = resizeImage(image: image, targetSize: CGSize(width: containerHeight - 10, height: containerHeight - 10)) else {
-            return
-        }
-        
-        demoView = FilterDemoImageView(frame: .zero, image: bigImage)
-        
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
-        layout.itemSize = filterThumbnailSize
-        
-        filterCollectionView = FilterCollectionView(frame: view.bounds, collectionViewLayout: layout)
-        filterCollectionView?.image = smallImage
-
-        filterCollectionView?.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: "FilterCell")
-        
-        let collectionViewModel = FilterCollectionViewModel()
-        filterCollectionView?.viewModel = collectionViewModel
-        
-        filterCollectionView?.didSelectFilter = {[weak self] filter in
-            guard let self = self else { return }
-            self.selectedFilter = filter
-            self.demoView?.image = filter.process(image: bigImage)
-        }
+        setUIWith(image)
         
         stackView = UIStackView()
         view.addSubview(stackView!)
@@ -94,6 +67,48 @@ public class FilterViewController: UIViewController {
         updateLayout()
         
         NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
+    }
+    
+    func setUIWith(_ image: UIImage?) {
+        guard let image = image else {
+            return
+        }
+
+        let bigImageHeight = max(view.frame.width - containerHeight, view.frame.height - containerHeight)
+        guard let bigImage = resizeImage(image: image, targetSize: CGSize(width: bigImageHeight, height: bigImageHeight)) else {
+            return
+        }
+        
+        guard let smallImage = resizeImage(image: image, targetSize: CGSize(width: containerHeight - 10, height: containerHeight - 10)) else {
+            return
+        }
+        
+        if demoView == nil {
+            demoView = FilterDemoImageView(frame: .zero, image: bigImage)
+        } else {
+            demoView?.image = bigImage
+        }
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
+        layout.itemSize = filterThumbnailSize
+        
+        if filterCollectionView == nil {
+            filterCollectionView = FilterCollectionView(frame: view.bounds, collectionViewLayout: layout)
+            
+            filterCollectionView?.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: "FilterCell")
+            
+            let collectionViewModel = FilterCollectionViewModel()
+            filterCollectionView?.viewModel = collectionViewModel
+        }
+        
+        filterCollectionView?.image = smallImage
+        
+        filterCollectionView?.didSelectFilter = {[weak self] filter in
+            guard let self = self else { return }
+            self.selectedFilter = filter
+            self.demoView?.image = filter.process(image: bigImage)
+        }
     }
     
     public override func viewWillAppear(_ animated: Bool) {
