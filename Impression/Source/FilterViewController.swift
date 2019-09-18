@@ -98,12 +98,11 @@ public class FilterViewController: UIViewController {
             
             filterCollectionView?.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: "FilterCell")
             
-            let collectionViewModel = FilterCollectionViewModel()
-            filterCollectionView?.viewModel = collectionViewModel
         }
-        
+
         filterCollectionView?.image = smallImage
-        
+        filterCollectionView?.viewModel = FilterCollectionViewModel()
+
         filterCollectionView?.didSelectFilter = {[weak self] filter in
             guard let self = self else { return }
             self.selectedFilter = filter
@@ -257,7 +256,7 @@ extension FilterViewController {
         return selectedFilter?.process(image: image)
     }
     
-    public func applySelectedFilter(with image: UIImage) -> UIImage? {
-        selectedFilter?.process(image: image)
+    public func process(_ image: UIImage) -> UIImage? {
+        return selectedFilter?.process(image: image)
     }
 }
