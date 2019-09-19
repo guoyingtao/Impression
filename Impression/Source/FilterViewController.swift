@@ -86,7 +86,11 @@ public class FilterViewController: UIViewController {
         if demoView == nil {
             demoView = FilterDemoImageView(frame: .zero, image: bigImage)
         } else {
-            demoView?.image = bigImage
+            if let selectedFilter = selectedFilter {
+                demoView?.image = selectedFilter.process(image: bigImage)
+            } else {
+                demoView?.image = bigImage
+            }            
         }
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
