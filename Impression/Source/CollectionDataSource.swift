@@ -8,7 +8,7 @@
 import UIKit
 
 class CollectionDataSource<Model>: NSObject, UICollectionViewDataSource {
-    typealias CellConfigurator = (Model, UICollectionViewCell, IndexPath) -> Void
+    typealias CellConfigurator = (Model, UICollectionViewCell, IndexPath, Int) -> Void
     
     var models: [Model]
     
@@ -33,13 +33,60 @@ class CollectionDataSource<Model>: NSObject, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let model = models[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(
+        guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: reuseIdentifier,
             for: indexPath
-        )
+            ) as? FilterCollectionViewCell else {
+                fatalError("Wrong cell.")
+        }
         
-        cellConfigurator(model, cell, indexPath)
+        if indexPath.item == 0 {
+            cell.readyForSelect()
+        }
+        
+        if let filterCollectionView = collectionView as? FilterCollectionView {
+            cellConfigurator(model, cell, indexPath, filterCollectionView.lastSelectedIndex)
+        }
         
         return cell
     }
 }
+
+extension CollectionDataSource where Model == (filter: FilterProtocol, image: UIImage) {
+    static func make(for imageProcessors: [(FilterProtocol, UIImage)],
+                     reuseIdentifier: String = "FilterCell") -> CollectionDataSource {
+        return CollectionDataSource (
+            models: imageProcessors,
+            reuseIdentifier: reuseIdentifier
+        ) { (imageProcessor, cell, indexPath, lastSelectedIndex) in
+            cell.backgroundColor = UIColor.white
+            
+            guard let cell = cell as? FilterCollectionViewCell else {
+                return
+            }
+            
+            func setupCell() {
+                guard let image = imageProcessor.filter.process(image: imageProcessor.image) else { return }
+
+                let locale = Bundle.main.preferredLocalizations.first ?? "en"
+                let title = imageProcessor.filter.getDisplayNameByLocale(locale)
+                cell.setup(image: image, title: title)
+                
+                if indexPath.row == lastSelectedIndex {
+                    cell.setFocus()
+                }
+            }
+            
+            // If there are too many filers, using async method to
+            // get a better user experience
+            if indexPath.row > 3 {
+                DispatchQueue.main.async {
+                    setupCell()
+                }
+            } else {
+                setupCell()
+            }
+        }
+    }
+}
+

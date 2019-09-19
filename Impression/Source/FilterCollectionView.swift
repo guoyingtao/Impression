@@ -41,20 +41,23 @@ class FilterCollectionView: UICollectionView {
 
 extension FilterCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let filter = myDataSource?.models[indexPath.row].filter else {
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? FilterCollectionViewCell else {
             return
         }
         
         if lastSelectedIndex != indexPath.row {
-            let lastIndexPath = IndexPath(item: lastSelectedIndex, section: 0)
-            if let lastSelectedCell = collectionView.cellForItem(at: lastIndexPath) as? FilterCollectionViewCell {
-                lastSelectedCell.removeFocus()
-            }
             lastSelectedIndex = indexPath.row
+            cell.setFocus()
+        } else {
+            lastSelectedIndex = 0
+            cell.removeFocus()
+            
+            NotificationCenter.default.post(name: .selectDefaultCell, object: nil)
         }
         
-        if let cell = collectionView.cellForItem(at: indexPath) as? FilterCollectionViewCell {
-            cell.setFocus()
+        guard let filter = myDataSource?.models[lastSelectedIndex].filter else {
+            return
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -62,36 +65,3 @@ extension FilterCollectionView: UICollectionViewDelegate {
         }
     }
 }
-
-extension CollectionDataSource where Model == (filter: FilterProtocol, image: UIImage) {
-    static func make(for imageProcessors: [(FilterProtocol, UIImage)],
-                     reuseIdentifier: String = "FilterCell") -> CollectionDataSource {
-        return CollectionDataSource (
-            models: imageProcessors,
-            reuseIdentifier: reuseIdentifier
-        ) { (imageProcessor, cell, indexPath) in
-            cell.backgroundColor = UIColor.white
-            
-            guard let cell = cell as? FilterCollectionViewCell else {
-                return
-            }
-            
-            func setupCell() {
-                guard let image = imageProcessor.filter.process(image: imageProcessor.image) else { return }
-
-                let locale = Bundle.main.preferredLocalizations.first ?? "en"
-                let title = imageProcessor.filter.getDisplayNameByLocale(locale)
-                cell.setup(image: image, title: title)
-            }
-            
-            if indexPath.row > 3 {
-                DispatchQueue.main.async {
-                    setupCell()
-                }
-            } else {
-                setupCell()
-            }
-        }
-    }
-}
-
